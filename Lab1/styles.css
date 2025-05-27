@@ -1,0 +1,83 @@
+/* Общие стили */
+body {
+    font-family: Arial, sans-serif;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Заголовок фирмы */
+h1 {
+    color: red;
+    text-align: right;
+    font-size: 28px;
+}
+
+/* Основной текст */
+.content {
+    color: green;
+    text-decoration: underline;
+    text-align: right;
+    font-size: 16px; /* Максимальный размер для подчеркнутого текста */
+}
+
+/* Логотип */
+.logo-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.logo {
+    max-width: 200px;
+    height: auto;
+}
+
+/* Таблица */
+table {
+    margin: 20px auto;
+    border-collapse: collapse;
+    border: 2px solid black;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid black;
+}
+
+th {
+    background-color: lightblue;
+}
+
+/* Многоуровневый список */
+.multilevel-list {
+    text-align: left;
+    margin-left: 20px;
+}
+
+.multilevel-list > li {
+    list-style-type: disc;
+}
+
+.multilevel-list ul > li {
+    list-style-type: circle;
+}
+
+.multilevel-list ul ul > li {
+    list-style-type: square;
+}
+
+/* Ссылки */
+.links {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.links a {
+    color: blue;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.links a:hover {
+    text-decoration: underline;
+}
