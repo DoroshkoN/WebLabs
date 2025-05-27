@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Шахматная доска</title>
+    <style>
+        pre {
+            font-family: monospace;
+            white-space: pre; /* Сохраняем форматирование пробелов и новых строк */
+        }
+    </style>
+</head>
+<body>
+
+<h1>Шахматная доска</h1>
+<label for="boardSize">Введите размер доски:</label>
+<input type="number" id="boardSize" value="8" min="1">
+<button id="generateBoard">Создать доску</button>
+
+<pre id="chessBoard"></pre>
+
+<script>
+function createChessBoard(size) {
+    let board = '';
+
+    for (let row = 0; row < size; row++) {
+        for (let col = 0; col < size; col++) {
+            // Заполняем позицию символом # или пробелом
+            board += (row + col) % 2 === 0 ? '#' : ' ';
+        }
+        board += '\n'; // Добавляем символ новой строки после каждой строки доски
+    }
+
+    return board;
+}
+
+document.getElementById('generateBoard').onclick = function() {
+    const size = parseInt(document.getElementById('boardSize').value, 10);
+    if (size > 0) {
+        document.getElementById('chessBoard').textContent = createChessBoard(size);
+    } else {
+        alert('Пожалуйста, введите положительное число.');
+    }
+};
+</script>
+
+</body>
+</html>
