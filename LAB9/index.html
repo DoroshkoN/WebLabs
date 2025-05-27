@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пример jQuery</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        img {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="logo.jpg" alt="Логотип">
+    <img src="moto1.jpg" alt="Мотоцикл 1">
+    <img src="moto2.jpg" alt="Мотоцикл 2">
+</header>
+
+<script>
+$(document).ready(function(){
+    // 1. Другие способы выборки логотипа
+    var myLogo1 = $('img[src="logo.jpg"]').hide(); // Полное совпадение
+    var myLogo2 = $('img').filter(function() {
+        return $(this).attr('src').includes('logo.jpg');
+    }).hide(); // Фильтрация по атрибуту
+
+    myLogo1.hide(3000);
+    myLogo1.show(3000);
+
+    // 2. Скрыть все картинки, кроме первой
+    $('img').not(':first').hide(5000);
+
+    // 3. Функция для изменения атрибута
+    function changeAttribute(id, attr, value) {
+        $('#' + id).attr(attr, value);
+    }
+
+    // Пример использования функции
+    changeAttribute('newparagraph', 'data-example', 'newValue');
+
+    // 4. Выборка для картинки второго мотоцикла
+    $('img[src="moto2.jpg"]')
+        .css('border', '1px solid #333333')
+        .animate({ borderWidth: '5px' }, 5000)
+        .fadeOut(5000);
+
+    // Добавление нового абзаца
+    $('<p id="newparagraph">Это новый абзац.</p>').appendTo('body').css({
+        backgroundColor: 'black',
+        color: 'white'
+    });
+});
+</script>
+
+</body>
+</html>

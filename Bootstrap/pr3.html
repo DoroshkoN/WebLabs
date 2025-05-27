@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Bootstrap Страница</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        .block {
+            border: 3px solid #007BFF;
+            padding: 20px;
+            margin: 15px 0;
+            background-color: #ffffff;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+        h2 {
+            color: #007BFF;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-sm-5 col-xs-12 block"> 
+            <h2>Блок 1</h2>
+            <p>Содержимое блока 1</p>
+        </div>
+        <div class="col-md-6 col-sm-5 hidden-xs block">
+            <h2>Блок 2</h2>
+            <p>Содержимое блока 2</p>
+        </div>
+        <div class="col-xs-6 visible-xs block" style="height: 100%;"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 block">
+            <h2>Вложенные блоки</h2>
+            <div class="row">
+                <div class="col-md-6 col-sm-5 hidden-sm col-xs-12 block">Вложенный Блок 1</div>
+                <div class="col-md-6 col-sm-5 col-xs-12 block">Вложенный Блок 2</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-7 col-sm-6 col-xs-12 block">Блок 3</div>
+        <div class="col-md-5 col-sm-6 col-xs-12 block">Блок 4</div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

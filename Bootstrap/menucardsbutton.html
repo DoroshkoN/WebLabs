@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Шины</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .navbar {
+            margin-bottom: 20px;
+        }
+        .panel {
+            transition: transform 0.3s;
+        }
+        .panel:hover {
+            transform: scale(1.05);
+        }
+        .panel-title {
+            font-size: 1.5em;
+        }
+        .panel-body {
+            text-align: center;
+        }
+        .btn {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-default"> 
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Мой сайт</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Главная</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">О нас <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Наша команда</a></li>
+                        <li><a href="#">История</a></li>
+                        <li><a href="#">Миссия</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Контакты</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Michelin</h3>
+                    </div>
+                    <div class="panel-body">
+                        <img src="labb.jpg" class="img-responsive" alt="Семена Огурца">
+                        <p>Michelin — это основа для плавности и тишины.</p>
+                        <a href="#" class="btn btn-primary">Перейти</a>
+                        <a href="#" class="btn btn-success">Купить</a>
+                        <a href="#" class="btn btn-danger">Удалить</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-danger">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Continental</h3>
+                    </div>
+                    <div class="panel-body">
+                        <img src="labb1.jpg" class="img-responsive" alt="Семена Помидоров">
+                        <p>Continental - дорого и надолго.</p>
+                        <a href="#" class="btn btn-primary">Перейти</a>
+                        <a href="#" class="btn btn-success">Купить</a>
+                        <a href="#" class="btn btn-danger">Удалить</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-warning">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">hankoook</h3>
+                    </div>
+                    <div class="panel-body">
+                        <img src="labb2.jpg" class="img-responsive" alt="Семена Перца">
+                        <p>hankoook — это бюджетный вариант.</p>
+                        <a href="#" class="btn btn-primary">Перейти</a>
+                        <a href="#" class="btn btn-success">Купить</a>
+                        <a href="#" class="btn btn-danger">Удалить</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+
+</html>

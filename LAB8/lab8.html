@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задание к лабораторной работе</title>
+    <style>
+        #output {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+
+        #my_links li {
+            margin: 5px 0;
+        }
+
+        #moto_table {
+            border-collapse: collapse;
+            width: auto;
+        }
+
+        #moto_table td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <div id="my_links">
+        <ul>
+            <li><a href="documents/report.pdf">Отчет</a></li>
+            <li><a href="images/photo.jpg">Фото</a></li>
+            <li><a href="documents/notes.txt">Заметки</a></li>
+            <li>Элемент без ссылки</li>
+        </ul>
+    </div>
+
+    <table id="moto_table">
+        <tr>
+            <td>Minsk</td>
+            <td>Minsk 145</td>
+        </tr>
+        <tr>
+            <td>yamaha</td>
+            <td>BMW</td>
+        </tr>
+        <tr>
+            <td>Auto</td>
+            <td>Moto</td>
+        </tr>
+        <tr>
+            <td>Frame</td>
+            <td>Gonto</td>
+        </tr>
+    </table>
+
+    <div id="output">
+        <h2>Отобранные элементы:</h2>
+        <div id="linksWithA"></div>
+        <div id="documentsLinks"></div>
+        <div id="lastCellsOutput"></div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            // 1. Отбор элементов li с ссылками
+            $('#my_links li:has(a)').each(function () {
+                $('#linksWithA').append('<div>' + $(this).text() + '</div>');
+            });
+
+            // 2. Отбор ссылок, начинающихся с "documents"
+            $('#my_links a[href^="documents"]').each(function () {
+                $('#documentsLinks').append('<div>' + $(this).attr('href') + '</div>');
+            });
+
+            // 3. Отбор последних ячеек в четных строках таблицы
+            $('#moto_table tr:even').each(function () {
+                const lastCell = $(this).find('td:last');
+                $('#lastCellsOutput').append('<div>' + lastCell.text() + '</div>');
+            });
+        });
+    </script>
+</body>
+
+</html>
