@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Ввод данных пользователя</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        button {
+            margin: 10px;
+            padding: 5px 15px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h2>Введите ваши данные</h2>
+    
+    <script>
+        // Ввод данных
+        function getUserData() {
+            let lastName = prompt("Введите свою фамилию", "");
+            if (lastName === null) return;
+            
+            let firstName = prompt("Введите свое имя", "");
+            if (firstName === null) return;
+            
+            let middleName = prompt("Введите свое отчество", "");
+            if (middleName === null) return;
+            
+            // Подтверждение
+            let fullName = `${lastName} ${firstName} ${middleName}`;
+            let isCorrect = confirm(`${fullName}\nВсе верно?`);
+            
+            if (isCorrect) {
+                alert(`Молодец,\n${fullName}`);
+            } else {
+                alert("Ошибка в данных");
+            }
+        }
+        
+        // Запускаем процесс при загрузке страницы
+        window.onload = function() {
+            getUserData();
+        };
+    </script>
+    
+    <p>Приложение JavaScript</p>
+    <button onclick="getUserData()">Повторить ввод</button>
+</body>
+</html>

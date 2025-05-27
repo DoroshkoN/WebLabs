@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Вычисление гипотенузы</title>
+    <script src="script.js" defer></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        input, button {
+            padding: 8px;
+            margin: 10px;
+        }
+        button {
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+        }
+        #result {
+            font-weight: bold;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Вычисление гипотенузы</h2>
+    <p>Введите длины катетов прямоугольного треугольника:</p>
+    
+    <div>
+        <label for="leg1">Катет 1:</label>
+        <input type="number" id="leg1" min="0" step="any" required>
+    </div>
+    
+    <div>
+        <label for="leg2">Катет 2:</label>
+        <input type="number" id="leg2" min="0" step="any" required>
+    </div>
+    
+    <button onclick="calculateHypotenuse()">Вычислить гипотенузу</button>
+    
+    <div id="result"></div>
+</body>
+</html>
