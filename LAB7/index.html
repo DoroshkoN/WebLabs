@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Управление контрактами сотрудников</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        form > div {
+            margin-bottom: 10px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input, select, button {
+            padding: 5px;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        #results {
+            margin-top: 20px;
+            padding: 10px;
+            background: #f0f0f0;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Форма ввода данных сотрудников</h1>
+    <form id="employeeForm">
+        <div>
+            <label for="surname">Фамилия:</label>
+            <input type="text" id="surname" required>
+        </div>
+        <div>
+            <label for="contractDate">Дата заключения контракта:</label>
+            <input type="date" id="contractDate" required>
+        </div>
+        <div>
+            <label for="contractTerm">Срок контракта (в годах):</label>
+            <input type="number" id="contractTerm" required>
+        </div>
+        <button type="button" onclick="addEmployee()">Добавить сотрудника</button>
+    </form>
+
+    <h2>Запросы</h2>
+    <div>
+        <label for="season">Выберите время года:</label>
+        <select id="season">
+            <option value="spring">Весна</option>
+            <option value="summer">Лето</option>
+            <option value="autumn">Осень</option>
+            <option value="winter">Зима</option>
+        </select>
+        <button onclick="checkSeason()">Показать сотрудников</button>
+    </div>
+
+    <div>
+        <label for="quarter">Выберите квартал (1-4):</label>
+        <input type="number" id="quarter" min="1" max="4">
+        <button onclick="checkQuarter()">Показать сотрудников</button>
+    </div>
+
+    <div>
+        <label for="currentDate">Введите текущую дату:</label>
+        <input type="date" id="currentDate">
+        <button onclick="checkCurrentContracts()">Показать сотрудников</button>
+    </div>
+
+    <div>
+        <label for="endDate">Введите дату завершения контракта:</label>
+        <input type="date" id="endDate">
+        <button onclick="checkEndedContracts()">Показать сотрудников</button>
+    </div>
+
+    <h2>Результаты</h2>
+    <div id="results"></div>
+</div>
+
+<script>
+function getEmployees() {
+    return JSON.parse(localStorage.getItem('employees') || '[]').map(emp => ({
+        ...emp,
+        contractDate: new Date(emp.contractDate),
+        endDate: new Date(emp.endDate)
+    }));
+}
+
+function saveEmployees(employees) {
+    localStorage.setItem('employees', JSON.stringify(employees));
+}
+
+function addEmployee() {
+    const surname = document.getElementById('surname').value;
+    const contractDate = new Date(document.getElementById('contractDate').value);
+    const contractTerm = parseInt(document.getElementById('contractTerm').value);
+    const endDate = new Date(contractDate);
+    endDate.setFullYear(endDate.getFullYear() + contractTerm);
+
+    const employees = getEmployees();
+    employees.push({ surname, contractDate, endDate });
+    saveEmployees(employees);
+
+    document.getElementById('employeeForm').reset();
+    alert('Сотрудник добавлен!');
+}
+
+function checkSeason() {
+    const season = document.getElementById('season').value;
+    const results = document.getElementById('results');
+    results.innerHTML = '';
+
+    const seasonMonths = {
+        spring: [3, 4, 5],
+        summer: [6, 7, 8],
+        autumn: [9, 10, 11],
+        winter: [12, 1, 2]
+    };
+
+    const months = seasonMonths[season];
+    const employees = getEmployees();
+    employees.forEach(emp => {
+        const endMonth = emp.endDate.getMonth() + 1;
+        if (months.includes(endMonth)) {
+            results.innerHTML += `<p>${emp.surname} - контракт заканчивается в ${season}.</p>`;
+        }
+    });
+}
+
+function checkQuarter() {
+    const quarter = parseInt(document.getElementById('quarter').value);
+    const results = document.getElementById('results');
+    results.innerHTML = '';
+
+    const quarterMonths = {
+        1: [1, 2, 3],
+        2: [4, 5, 6],
+        3: [7, 8, 9],
+        4: [10, 11, 12]
+    };
+
+    const months = quarterMonths[quarter];
+    const employees = getEmployees();
+    employees.forEach(emp => {
+        const endMonth = emp.endDate.getMonth() + 1;
+        if (months.includes(endMonth)) {
+            results.innerHTML += `<p>${emp.surname} - контракт заканчивается в квартале ${quarter}.</p>`;
+        }
+    });
+}
+
+function checkCurrentContracts() {
+    const currentDate = new Date(document.getElementById('currentDate').value);
+    const results = document.getElementById('results');
+    results.innerHTML = '';
+
+    const employees = getEmployees();
+    employees.forEach(emp => {
+        if (emp.contractDate <= currentDate && emp.endDate >= currentDate) {
+            results.innerHTML += `<p>${emp.surname} - контракт действителен.</p>`;
+        }
+    });
+}
+
+function checkEndedContracts() {
+    const endDate = new Date(document.getElementById('endDate').value);
+    const results = document.getElementById('results');
+    results.innerHTML = '';
+
+    const employees = getEmployees();
+    employees.forEach(emp => {
+        if (emp.endDate <= endDate) {
+            results.innerHTML += `<p>${emp.surname} - контракт завершен.</p>`;
+        }
+    });
+}
+</script>
+
+</body>
+</html>

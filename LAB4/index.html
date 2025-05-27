@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анкета участника Олимпиады</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+        }
+        .task {
+            margin: 10px 0;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Анкета участника Олимпиады</h1>
+<form id="olympiadForm">
+    <div class="task">
+        <label>Задача 1:</label>
+        <label><input type="radio" name="task1" value="0" required> 0</label>
+        <label><input type="radio" name="task1" value="10"> 10</label>
+        <label><input type="radio" name="task1" value="20"> 20</label>
+        <label><input type="radio" name="task1" value="30"> 30</label>
+    </div>
+    <div class="task">
+        <label>Задача 2:</label>
+        <label><input type="radio" name="task2" value="0" required> 0</label>
+        <label><input type="radio" name="task2" value="10"> 10</label>
+        <label><input type="radio" name="task2" value="20"> 20</label>
+        <label><input type="radio" name="task2" value="30"> 30</label>
+    </div>
+    <div class="task">
+        <label>Задача 3:</label>
+        <label><input type="radio" name="task3" value="0" required> 0</label>
+        <label><input type="radio" name="task3" value="10"> 10</label>
+        <label><input type="radio" name="task3" value="20"> 20</label>
+        <label><input type="radio" name="task3" value="30"> 30</label>
+    </div>
+    <div class="task">
+        <label>Задача 4:</label>
+        <label><input type="radio" name="task4" value="0" required> 0</label>
+        <label><input type="radio" name="task4" value="10"> 10</label>
+        <label><input type="radio" name="task4" value="20"> 20</label>
+        <label><input type="radio" name="task4" value="30"> 30</label>
+    </div>
+    <div class="task">
+        <label>Задача 5:</label>
+        <label><input type="radio" name="task5" value="0" required> 0</label>
+        <label><input type="radio" name="task5" value="10"> 10</label>
+        <label><input type="radio" name="task5" value="20"> 20</label>
+        <label><input type="radio" name="task5" value="30"> 30</label>
+    </div>
+    <div class="task">
+        <label>Задача 6:</label>
+        <label><input type="radio" name="task6" value="0" required> 0</label>
+        <label><input type="radio" name="task6" value="10"> 10</label>
+        <label><input type="radio" name="task6" value="20"> 20</label>
+        <label><input type="radio" name="task6" value="30"> 30</label>
+    </div>
+
+    <button type="submit">Отправить</button>
+</form>
+
+<h2 id="result"></h2>
+
+<script>
+    document.getElementById('olympiadForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        let scores = [
+            parseInt(document.querySelector('input[name="task1"]:checked').value),
+            parseInt(document.querySelector('input[name="task2"]:checked').value),
+            parseInt(document.querySelector('input[name="task3"]:checked').value),
+            parseInt(document.querySelector('input[name="task4"]:checked').value),
+            parseInt(document.querySelector('input[name="task5"]:checked').value),
+            parseInt(document.querySelector('input[name="task6"]:checked').value)
+        ];
+
+        let totalScore = scores.reduce((a, b) => a + b, 0);
+        let place = '';
+
+        if (scores.every(score => score === 30)) {
+            place = '1 место';
+        } else if (scores.every(score => score >= 20) && scores.some(score => score === 30)) {
+            place = '2 место';
+        } else if (scores.every(score => score === 20)) {
+            place = '3 место';
+        } else {
+            place = 'Призовые места не присуждаются';
+        }
+
+        document.getElementById('result').innerText = `Сумма баллов: ${totalScore}, Место: ${place}`;
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Автомобили</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            border: 2px solid transparent;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+        nav a:hover {
+            border-color: gray;
+        }
+        #imageContainer {
+            position:absolute;
+            width: 1000px;
+            height: 400px;
+            margin: auto;
+            overflow: hidden;
+        }
+        img {
+            position: absolute;
+            max-width: 150%;
+            height: auto;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1s;
+        }
+        img.active {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Меню Автомобили</h1>
+<nav>
+    <a href="#" onclick="showImages('sedan')">Седан</a>
+    <a href="#" onclick="showImages('suv')">Внедорожник</a>
+    <a href="#" onclick="showImages('hatchback')">Хэтчбек</a>
+    <a href="#" onclick="showImages('coupe')">Купе</a>
+    <a href="#" onclick="showImages('convertible')">Кабриолет</a>
+</nav>
+
+<div id="imageContainer">
+    <img id="image1" src="sedan1.jpg" class="unactive" alt="Седан">
+    <img id="image2" src="sedan2.jpg" alt="Седан">
+    <img id="image3" src="sedan3.jpg" alt="Седан">
+</div>
+
+<script>
+    let currentIndex = 0;
+    let interval;
+
+    function showImages(type) {
+        clearInterval(interval);
+        const images = {
+            sedan: ['sed.jpg', 'sed2.jpg', 'sed3.jpg'],
+            suv: ['suv1.jpg', 'suv2.jpg', 'suv3.jpg'],
+            hatchback: ['hatchback1.jpg', 'hatchback2.jpg', 'hatchback3.jpg'],
+            coupe: ['coupe1.jpg', 'coupe2.jpg', 'coupe3.jpg'],
+            convertible: ['convertible1.jpg', 'convertible2.jpg', 'convertible3.jpg']
+        };
+
+        const imageElements = document.querySelectorAll('#imageContainer img');
+        imageElements.forEach(img => img.classList.remove('active'));
+
+        currentIndex = 0;
+        imageElements[0].src = images[type][currentIndex];
+        imageElements[0].classList.add('active');
+
+        interval = setInterval(() => {
+            currentIndex = (currentIndex + 1) % images[type].length;
+            imageElements.forEach((img, index) => {
+                img.src = images[type][index % images[type].length];
+                img.classList.toggle('active', index === currentIndex);
+            });
+        }, 3000);
+    }
+</script>
+
+</body>
+</html>
